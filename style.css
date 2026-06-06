@@ -52,7 +52,8 @@ section{padding:64px 0;position:relative;z-index:1}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
 .badge{display:inline-flex;align-items:center;gap:9px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink);padding:7px 15px;border:1.5px dashed var(--ink);border-radius:6px;background:repeating-linear-gradient(135deg,transparent,transparent 9px,rgba(242,190,52,.16) 9px,rgba(242,190,52,.16) 18px)}
 .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(242,190,52,.3)}
-.hero h1{font-family:var(--en-display);font-weight:600;line-height:1.02;font-size:clamp(2.9rem,6.4vw,4.6rem);letter-spacing:-.01em;margin:22px 0 6px}
+.greet{font-size:.92rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.04em}
+.hero h1{font-family:var(--en-display);font-weight:600;line-height:1.02;font-size:clamp(2.9rem,6.4vw,4.6rem);letter-spacing:-.01em;margin:12px 0 6px}
 .hero h1 .cjk{font-size:.42em;font-weight:500;color:var(--ink-soft);letter-spacing:.18em;vertical-align:middle;margin-left:.5em}
 .role{font-size:clamp(1.05rem,2.4vw,1.4rem);font-weight:500}
 .role b{position:relative;white-space:nowrap}
@@ -86,7 +87,12 @@ section{padding:64px 0;position:relative;z-index:1}
 .thread .ic{width:40px;height:40px;border-radius:11px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex:none}
 .thread .lbl{font-weight:600}
 .thread .sub{font-size:.86rem;color:var(--ink-soft)}
-@media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:32px}}
+.about-photos{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.about-shot{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow);border:1px solid var(--line)}
+.about-shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.about-shot:hover img{transform:scale(1.04)}
+.about-shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(transparent,rgba(21,48,59,.88));color:var(--paper);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:32px}.about-photos{grid-template-columns:1fr 1fr}}
 
 /* WORK (home) */
 .feat{margin-top:34px;display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s}
@@ -117,7 +123,7 @@ section{padding:64px 0;position:relative;z-index:1}
 .subhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .subhead .note{color:var(--ink-soft);font-size:.92rem}
 .ug-grid{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.ug-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--white);transition:.25s}
+.ug-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--white);transition:.25s;display:block;color:inherit}
 .ug-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 .ug-card .img{aspect-ratio:16/11;overflow:hidden;background:var(--paper-2)}
 .ug-card .img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
@@ -195,9 +201,13 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
 .p-text ul{list-style:none;margin-top:6px;display:flex;flex-direction:column;gap:8px}
 .p-text li{padding-left:18px;position:relative;color:var(--ink-soft)}
 .p-text li::before{content:"→";position:absolute;left:0;color:var(--gold);font-weight:700}
-.figure{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--white);box-shadow:var(--shadow)}
-.figure img{width:100%;display:block}
+.figure{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow)}
+.figure.slide img{padding:0;max-height:none;object-fit:contain;background:#fff;width:100%}
+.p-grid .figure.slide{align-self:stretch}
+.p-grid .figure.slide img{max-height:none}
+.figure:not(.slide) img{object-fit:contain;background:var(--paper-2);padding:16px;max-height:520px;margin:0 auto}
 .figure figcaption{font-size:.78rem;color:var(--ink-soft);padding:11px 16px;border-top:1px solid var(--line);letter-spacing:.02em}
+.ug-card .more{margin-top:12px;font-size:.82rem;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px;border-bottom:2px solid var(--gold);padding-bottom:2px}
 .callout{background:var(--paper-2);border-radius:14px;padding:20px 22px;margin-top:8px}
 .callout .big{font-family:var(--en-display);font-size:1.7rem;font-weight:600;color:var(--ink)}
 .callout .lbl{font-size:.82rem;color:var(--ink-soft)}

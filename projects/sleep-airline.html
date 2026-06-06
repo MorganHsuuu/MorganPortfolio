@@ -27,38 +27,33 @@
     <a href="../index.html#work" class="back reveal">← All work</a>
     <div class="num reveal" style="margin-top:18px">01 — Sleep Airline</div>
     <h1 class="reveal d1">Sleep, reimagined as a flight.</h1>
-    <p class="p-sub reveal d1">A bedside device that turns falling asleep into a “takeoff ritual” — replacing the anxiety of quantified sleep scores with the anticipation of a new destination.</p>
+    <p class="p-sub reveal d1">A bedside device that turns falling asleep into a “takeoff ritual” — GenAI captain's voice, illustrated cityscapes, and stories instead of sleep scores.</p>
     <div class="tags p-tags reveal d2"><span class="tag">HCI</span><span class="tag">Research through Design</span><span class="tag">GenAI</span><span class="tag">Raspberry Pi</span><span class="tag">UI/UX</span></div>
     <div class="p-meta reveal d2">
       <div><div class="k">My role</div><div class="v">Solo — research, design &amp; full build</div></div>
       <div><div class="k">Timeline</div><div class="v">2025 Q4 – present</div></div>
       <div><div class="k">Build</div><div class="v">Raspberry Pi · Firebase · GenAI API · Cursor</div></div>
-      <div><div class="k">Status</div><div class="v">ACM DIS 2026 WIP · TAI-CHI full paper (target)</div></div>
+      <div><div class="k">Status</div><div class="v">ACM DIS 2026 WIP submitted · TAI-CHI full paper (target)</div></div>
     </div>
-    <div class="p-cover reveal d3"><img src="../assets/sleep.jpg" alt="Sleep Airline bedside device"></div>
+    <div class="p-cover reveal d3"><img src="../assets/sleepAirline.png" alt="Sleep Airline bedside device"></div>
   </div>
 </header>
 
 <section class="p-sec">
-  <div class="wrap p-grid">
+  <div class="wrap p-grid flip">
+    <figure class="figure slide reveal d1"><img src="../assets/grad-slides/sleep-airline/slide-06.jpg" alt="Sleep Airline problem and design strategy"><figcaption>Portfolio slide · problem space &amp; design strategy</figcaption></figure>
     <div class="p-text reveal">
       <span class="eyebrow">The problem</span>
       <h2>When rest becomes a performance.</h2>
       <p>Sleep trackers turn rest into a score. Fixating on those numbers can backfire into <b>“orthosomnia”</b> — anxiety caused by the pursuit of perfect sleep data (Baron et al., 2017).</p>
       <p>At the same time, sleep science focuses on mid-sleep, leaving the <b>moment of falling asleep</b> — the onset — largely undesigned. As HCI shifts toward experience-centered design, narrative design for this transition is still an open gap.</p>
     </div>
-    <div class="reveal d1">
-      <div class="callout">
-        <div class="big">Onset, not output.</div>
-        <div class="lbl">Sleep Airline treats falling asleep as a designed transition to be experienced — not a metric to optimize.</div>
-      </div>
-    </div>
   </div>
 </section>
 
 <section class="p-sec">
   <div class="wrap p-grid flip">
-    <figure class="figure reveal d1"><img src="../assets/sleep-journey.jpg" alt="Design metaphor diagram"><figcaption>Design metaphor — one sleep session becomes one flight; hours of sleep map to flight distance and a destination.</figcaption></figure>
+    <figure class="figure slide reveal d1"><img src="../assets/grad-slides/sleep-airline/slide-07.jpg" alt="Design metaphor diagram"><figcaption>Design metaphor — one sleep session becomes one flight; hours of sleep map to flight distance and a destination.</figcaption></figure>
     <div class="p-text reveal">
       <span class="eyebrow">The concept</span>
       <h2>One sleep = one flight.</h2>
@@ -83,13 +78,13 @@
         <li><b>The app</b> — richer reflection delivered only once you're fully awake: ticket collection, on-time stats, duration trends.</li>
       </ul>
     </div>
-    <figure class="figure reveal d1"><img src="../assets/sleep-ui.jpg" alt="Device and app interface decisions"><figcaption>Two states, two interfaces — a zero-reading bedside device for grogginess; a reflective app for when you're awake.</figcaption></figure>
+    <figure class="figure slide reveal d1"><img src="../assets/grad-slides/sleep-airline/slide-08.jpg" alt="Device and app interface decisions"><figcaption>Two states, two interfaces — a zero-reading bedside device for grogginess; a reflective app for when you're awake.</figcaption></figure>
   </div>
 </section>
 
 <section class="p-sec">
   <div class="wrap p-grid flip">
-    <figure class="figure reveal d1"><img src="../assets/sleep-flow.jpg" alt="End to end user journey"><figcaption>End-to-end journey — set duration, confirm flight, sleep, cruise, land. GenAI rewrites the arrival story to your actual wake time.</figcaption></figure>
+    <figure class="figure slide reveal d1"><img src="../assets/grad-slides/sleep-airline/slide-09.jpg" alt="End to end user journey"><figcaption>End-to-end journey — set duration, confirm flight, sleep, cruise, land. GenAI rewrites the arrival story to your actual wake time.</figcaption></figure>
     <div class="p-text reveal">
       <span class="eyebrow">The journey</span>
       <h2>A story that adapts to your morning.</h2>
@@ -115,13 +110,13 @@
         <li><b>Companion</b> — a web app for flight logs and trajectory history.</li>
       </ul>
     </div>
-    <figure class="figure reveal d1"><img src="../assets/sleep-arch.jpg" alt="System architecture diagram"><figcaption>Hardware-to-cloud architecture — Raspberry Pi → GenAI + flight logic → Firebase → companion web app.</figcaption></figure>
+    <figure class="figure slide reveal d1"><img src="../assets/grad-slides/sleep-airline/slide-10.jpg" alt="System architecture diagram"><figcaption>Hardware-to-cloud architecture — Raspberry Pi → GenAI + flight logic → Firebase → companion web app.</figcaption></figure>
   </div>
 </section>
 
 <section class="p-sec">
   <div class="wrap p-grid flip">
-    <figure class="figure reveal d1"><img src="../assets/sleep-results.jpg" alt="Field deployment findings"><figcaption>Field deployment findings — behavioral shifts, meaning reconstruction, and unexpected social journeys across time zones.</figcaption></figure>
+    <figure class="figure slide reveal d1"><img src="../assets/grad-slides/sleep-airline/slide-12.jpg" alt="Field deployment findings"><figcaption>Field deployment findings — behavioral shifts, meaning reconstruction, and unexpected social journeys across time zones.</figcaption></figure>
     <div class="p-text reveal">
       <span class="eyebrow">What we learned</span>
       <h2>Behavioral shifts &amp; a social surprise.</h2>
@@ -129,7 +124,7 @@
       <ul>
         <li><b>Inviting</b> — a retired officer reported natural drowsiness after the takeoff ritual.</li>
         <li><b>Actionable</b> — a night-shift nurse calculated bedtime backwards “to reach the destination,” sleeping earlier.</li>
-        <li><b>Shareable</b> — a participant and their sibling created shared journeys across time zones.</li>
+        <li><b>Shareable</b> — one participant put down the phone to “protect the plot”; another created shared journeys with their sibling across time zones.</li>
       </ul>
       <p>That social signal now drives <b>V2: co-flying</b> — shared flights, relays and layover-style sleep connections.</p>
     </div>
