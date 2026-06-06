@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeDrive Focus — Morgan Hsu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Sora:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="../index.html" class="brand">Morgan Hsu <span class="cjk">徐梓晏</span></a>
+    <div class="nav-links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#background">Background</a>
+      <a href="../index.html#contact" class="nav-cta">Let's connect</a>
+    </div>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="wrap">
+    <a href="../index.html#work" class="back reveal">← All work</a>
+    <div class="num reveal" style="margin-top:18px">02 — SafeDrive Focus</div>
+    <h1 class="reveal d1">An interface that reads your cognitive load.</h1>
+    <p class="p-sub reveal d1">A conceptual HMI redesign for premium in-vehicle systems (Mercedes-Benz GLC context) that adaptively balances information richness against driver focus.</p>
+    <div class="tags p-tags reveal d2"><span class="tag">HMI</span><span class="tag">UX Research</span><span class="tag">Automotive</span><span class="tag">Usability Evaluation</span></div>
+    <div class="p-meta reveal d2">
+      <div><div class="k">My role</div><div class="v">User research, problem definition, interaction logic &amp; testing</div></div>
+      <div><div class="k">Team</div><div class="v">4 designers</div></div>
+      <div><div class="k">Context</div><div class="v">Mercedes-Benz GLC</div></div>
+      <div><div class="k">Methods</div><div class="v">Interviews · Gamified dual-task test</div></div>
+    </div>
+    <div class="p-cover reveal d3"><img src="../assets/drive.jpg" alt="SafeDrive Focus in-car HMI"></div>
+  </div>
+</header>
+
+<section class="p-sec">
+  <div class="wrap p-grid">
+    <div class="p-text reveal">
+      <span class="eyebrow">Problem &amp; opportunity</span>
+      <h2>The hidden danger of big screens.</h2>
+      <p>As in-car panels grow larger, so do <b>Non-Driving-Related Tasks (NDRT)</b> — and with them, visual, cognitive and manual distraction.</p>
+      <p>The design challenge was twofold: <b>reduce driver cognitive load</b> through dynamic HMI reconstruction, while <b>preserving the brand's premium feel</b>. Safety and luxury, not safety <em>or</em> luxury.</p>
+    </div>
+    <div class="reveal d1">
+      <div class="callout">
+        <div class="big">3 distractions, 1 screen.</div>
+        <div class="lbl">Visual · cognitive · manual — the interface itself had become the risk. Our goal was to make it disappear when it matters most.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid flip">
+    <figure class="figure reveal d1"><img src="../assets/drive-hmw.jpg" alt="Pain points to strategy map"><figcaption>From 4 active drivers' pain points to two operating modes, both serving one goal: safety.</figcaption></figure>
+    <div class="p-text reveal">
+      <span class="eyebrow">Research &amp; strategy</span>
+      <h2>From pain points to two modes.</h2>
+      <p>Interviews with <b>4 active drivers</b> surfaced three recurring pains: a mismatch between menu architecture and real needs, information overload, and a lack of clear feedback.</p>
+      <p>These mapped to two complementary strategies — a rich, anticipatory <b>Standard Mode</b> and a stripped-back, protective <b>Focus Mode</b> — that the system can switch between.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid">
+    <div class="p-text reveal">
+      <span class="eyebrow">Standard Mode</span>
+      <h2>A zero-layer experience.</h2>
+      <p>When load is low, the car anticipates rather than waits:</p>
+      <ul>
+        <li><b>Identity-driven</b> — Face ID pre-loads a “Commute Home” profile.</li>
+        <li><b>Context-aware, zero-click</b> — the map auto-expands and prompts family contacts.</li>
+        <li><b>Task-adaptive layout</b> — panels resize so media and navigation coexist without obstruction.</li>
+      </ul>
+    </div>
+    <figure class="figure reveal d1"><img src="../assets/drive-standard.jpg" alt="Standard Mode interface"><figcaption>Standard Mode — anticipating needs through data for a near zero-layer interaction.</figcaption></figure>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid flip">
+    <figure class="figure reveal d1"><img src="../assets/drive-focus.jpg" alt="Focus Mode interface"><figcaption>Focus Mode — proactively filtering distractions through context-aware interventions.</figcaption></figure>
+    <div class="p-text reveal">
+      <span class="eyebrow">Focus Mode</span>
+      <h2>The interface that gets out of the way.</h2>
+      <p>Under high load, the system intervenes before risk occurs:</p>
+      <ul>
+        <li><b>Context-aware trigger</b> — auto-activates on heavy rain, tunnels or gaze deviation.</li>
+        <li><b>Smart notification filtering</b> — low-priority alerts are held; urgent ones route to voice.</li>
+        <li><b>Ambient visual feedback</b> — screen pop-ups become ambient light cues, moving load off the screen.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid">
+    <div class="p-text reveal">
+      <span class="eyebrow">Validation</span>
+      <h2>Context shapes usability.</h2>
+      <p>Using a <b>gamified dual-task test</b> (HMI operation + a continuous attention game to simulate driving load, N=10 per condition), the same interface scored very differently by context:</p>
+      <div class="callout" style="margin-bottom:14px">
+        <div class="big">86.5 vs 54.5</div>
+        <div class="lbl">Under high load, Focus Mode (86.5) far outscored the rich Standard Mode (54.5). At low load, the relationship flipped.</div>
+      </div>
+      <p>The takeaway: rich UI felt thoughtful when relaxed but became noise under stress — <b>adaptive switching</b> is what serves safety-critical interaction.</p>
+    </div>
+    <figure class="figure reveal d1"><img src="../assets/drive-data.jpg" alt="Usability test results"><figcaption>Gamified dual-task results — usability scores by cognitive-load condition for each mode.</figcaption></figure>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="p-nav">
+    <a class="back" href="sleep-airline.html">← Sleep Airline</a>
+    <a class="next" href="refly.html"><span><span class="lbl">Next project</span>REFLY</span> →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Morgan Hsu · 徐梓晏</span>
+    <span>Observe life, create better experiences.</span>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

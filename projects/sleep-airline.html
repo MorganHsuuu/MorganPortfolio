@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Airline — Morgan Hsu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Sora:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="../index.html" class="brand">Morgan Hsu <span class="cjk">徐梓晏</span></a>
+    <div class="nav-links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#background">Background</a>
+      <a href="../index.html#contact" class="nav-cta">Let's connect</a>
+    </div>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="wrap">
+    <a href="../index.html#work" class="back reveal">← All work</a>
+    <div class="num reveal" style="margin-top:18px">01 — Sleep Airline</div>
+    <h1 class="reveal d1">Sleep, reimagined as a flight.</h1>
+    <p class="p-sub reveal d1">A bedside device that turns falling asleep into a “takeoff ritual” — replacing the anxiety of quantified sleep scores with the anticipation of a new destination.</p>
+    <div class="tags p-tags reveal d2"><span class="tag">HCI</span><span class="tag">Research through Design</span><span class="tag">GenAI</span><span class="tag">Raspberry Pi</span><span class="tag">UI/UX</span></div>
+    <div class="p-meta reveal d2">
+      <div><div class="k">My role</div><div class="v">Solo — research, design &amp; full build</div></div>
+      <div><div class="k">Timeline</div><div class="v">2025 Q4 – present</div></div>
+      <div><div class="k">Build</div><div class="v">Raspberry Pi · Firebase · GenAI API · Cursor</div></div>
+      <div><div class="k">Status</div><div class="v">ACM DIS 2026 WIP · TAI-CHI full paper (target)</div></div>
+    </div>
+    <div class="p-cover reveal d3"><img src="../assets/sleep.jpg" alt="Sleep Airline bedside device"></div>
+  </div>
+</header>
+
+<section class="p-sec">
+  <div class="wrap p-grid">
+    <div class="p-text reveal">
+      <span class="eyebrow">The problem</span>
+      <h2>When rest becomes a performance.</h2>
+      <p>Sleep trackers turn rest into a score. Fixating on those numbers can backfire into <b>“orthosomnia”</b> — anxiety caused by the pursuit of perfect sleep data (Baron et al., 2017).</p>
+      <p>At the same time, sleep science focuses on mid-sleep, leaving the <b>moment of falling asleep</b> — the onset — largely undesigned. As HCI shifts toward experience-centered design, narrative design for this transition is still an open gap.</p>
+    </div>
+    <div class="reveal d1">
+      <div class="callout">
+        <div class="big">Onset, not output.</div>
+        <div class="lbl">Sleep Airline treats falling asleep as a designed transition to be experienced — not a metric to optimize.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid flip">
+    <figure class="figure reveal d1"><img src="../assets/sleep-journey.jpg" alt="Design metaphor diagram"><figcaption>Design metaphor — one sleep session becomes one flight; hours of sleep map to flight distance and a destination.</figcaption></figure>
+    <div class="p-text reveal">
+      <span class="eyebrow">The concept</span>
+      <h2>One sleep = one flight.</h2>
+      <p>Set your hours with a knob and the device plots a route: <b>hours × 900 km/h = a destination</b>. Nine hours lands you in Paris.</p>
+      <ul>
+        <li><b>Distance over duration</b> — waking up becomes a new story, not a test grade.</li>
+        <li><b>Narrative over data</b> — GenAI writes a personalized captain's announcement for every session.</li>
+        <li><b>Minimal tracking</b> — duration only, so there's no sleep-score pressure.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid">
+    <div class="p-text reveal">
+      <span class="eyebrow">Interaction &amp; UI</span>
+      <h2>Designed for grogginess.</h2>
+      <p>The two moments around sleep are cognitively fragile, so the interface splits in two:</p>
+      <ul>
+        <li><b>The device</b> — zero-reading, physical knob &amp; button only; the screen lights only for takeoff and landing, then auto-dims.</li>
+        <li><b>The app</b> — richer reflection delivered only once you're fully awake: ticket collection, on-time stats, duration trends.</li>
+      </ul>
+    </div>
+    <figure class="figure reveal d1"><img src="../assets/sleep-ui.jpg" alt="Device and app interface decisions"><figcaption>Two states, two interfaces — a zero-reading bedside device for grogginess; a reflective app for when you're awake.</figcaption></figure>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid flip">
+    <figure class="figure reveal d1"><img src="../assets/sleep-flow.jpg" alt="End to end user journey"><figcaption>End-to-end journey — set duration, confirm flight, sleep, cruise, land. GenAI rewrites the arrival story to your actual wake time.</figcaption></figure>
+    <div class="p-text reveal">
+      <span class="eyebrow">The journey</span>
+      <h2>A story that adapts to your morning.</h2>
+      <p>Pull the shutter to depart; close it to sleep. Each morning, GenAI adapts the arrival narrative to <b>when you actually woke up</b>:</p>
+      <ul>
+        <li>Woke early → “Wormhole shortcut — arrived ahead of schedule.”</li>
+        <li>On time → “Like a Swiss watch, landing perfectly on time.”</li>
+        <li>Slept in → “Severe turbulence — rerouting toward Türkiye.”</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid">
+    <div class="p-text reveal">
+      <span class="eyebrow">System</span>
+      <h2>Hardware to cloud, built solo.</h2>
+      <p>Using AI-assisted development (Cursor), I built a deployable, high-fidelity prototype end to end:</p>
+      <ul>
+        <li><b>Hardware</b> — Raspberry Pi with rotary knob, button, LCD and speaker, hand-soldered.</li>
+        <li><b>Software</b> — GenAI API for narrative + cityscape generation; flight logic; Firebase sync.</li>
+        <li><b>Companion</b> — a web app for flight logs and trajectory history.</li>
+      </ul>
+    </div>
+    <figure class="figure reveal d1"><img src="../assets/sleep-arch.jpg" alt="System architecture diagram"><figcaption>Hardware-to-cloud architecture — Raspberry Pi → GenAI + flight logic → Firebase → companion web app.</figcaption></figure>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap p-grid flip">
+    <figure class="figure reveal d1"><img src="../assets/sleep-results.jpg" alt="Field deployment findings"><figcaption>Field deployment findings — behavioral shifts, meaning reconstruction, and unexpected social journeys across time zones.</figcaption></figure>
+    <div class="p-text reveal">
+      <span class="eyebrow">What we learned</span>
+      <h2>Behavioral shifts &amp; a social surprise.</h2>
+      <p>A 7-day in-home deployment with 3 users (the device as their primary alarm), with insights triangulated from daily LINE logs, interviews and review sessions:</p>
+      <ul>
+        <li><b>Inviting</b> — a retired officer reported natural drowsiness after the takeoff ritual.</li>
+        <li><b>Actionable</b> — a night-shift nurse calculated bedtime backwards “to reach the destination,” sleeping earlier.</li>
+        <li><b>Shareable</b> — a participant and their sibling created shared journeys across time zones.</li>
+      </ul>
+      <p>That social signal now drives <b>V2: co-flying</b> — shared flights, relays and layover-style sleep connections.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="p-nav">
+    <a class="back" href="../index.html#work">← All work</a>
+    <a class="next" href="safedrive.html"><span><span class="lbl">Next project</span>SafeDrive Focus</span> →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Morgan Hsu · 徐梓晏</span>
+    <span>Observe life, create better experiences.</span>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
