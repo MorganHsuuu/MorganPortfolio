@@ -239,6 +239,7 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
 .p-download{text-align:center;padding:8px 0 4px}
 .p-download h2{font-family:var(--en-display);font-weight:600;font-size:clamp(1.4rem,3vw,1.85rem);line-height:1.15;margin:8px 0 12px}
 .p-download p{color:var(--ink-soft);max-width:44ch;margin:0 auto 22px;font-size:.96rem;line-height:1.5}
+.p-download-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
 .p-nav a{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-family:var(--en-display);font-size:1.15rem;transition:.2s}
 .p-nav .next:hover{gap:14px}
 .p-nav .lbl{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-family:var(--en-body);font-weight:600;display:block;margin-bottom:2px}
