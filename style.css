@@ -146,8 +146,10 @@ section{padding:64px 0;position:relative;z-index:1}
 /* BACKGROUND */
 .bg-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;margin-top:30px}
 .tl{display:flex;flex-direction:column}
-.tl .it{display:grid;grid-template-columns:72px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
-.tl .yr{font-family:var(--en-display);font-weight:600;font-size:1rem;white-space:nowrap}
+.tl .it{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.tl .yr{font-family:var(--en-display);font-weight:600;font-size:1rem;line-height:1.15}
+.tl .yr-stack{display:flex;flex-direction:column;gap:1px}
+.tl .yr-stack span{display:block}
 .tl .t{font-weight:600;font-size:.96rem}
 .tl .s{font-size:.84rem;color:var(--ink-soft)}
 .skills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
@@ -157,8 +159,8 @@ section{padding:64px 0;position:relative;z-index:1}
 .sk li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .edu{margin-bottom:28px}
 .edu-block{margin-bottom:28px}
-.edu-head{display:flex;align-items:flex-start;gap:14px}
-.edu-logo{width:44px;height:auto;flex:none;object-fit:contain;margin-top:2px}
+.edu-head{display:flex;align-items:stretch;gap:14px}
+.edu-logo{width:52px;height:auto;align-self:stretch;object-fit:contain;object-position:center;flex:none}
 .edu-list{display:flex;flex-direction:column;gap:16px;flex:1;min-width:0}
 .edu-block .edu{margin-bottom:0}
 .edu .deg{font-weight:600;font-size:1.02rem;line-height:1.35}
@@ -263,8 +265,8 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
   .skills{grid-template-columns:1fr 1fr;gap:18px 14px}
   .skills .sk:last-child{grid-column:1/-1}
   .sk li{font-size:.86rem}
-  .tl .it{grid-template-columns:64px 1fr;gap:10px}
-  .tl .yr{white-space:nowrap}
+  .tl .it{grid-template-columns:48px 1fr;gap:10px}
+  .tl .yr{font-size:.92rem}
   .tl .t{font-size:.92rem;line-height:1.35}
   .tl .s{font-size:.8rem;line-height:1.45}
   .p-nav{flex-direction:column;align-items:stretch;gap:12px}
@@ -300,8 +302,9 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
   .ug-card .nm{font-size:1.05rem}
   .ug-card .ds{font-size:.82rem;line-height:1.45}
   .edu .deg{font-size:.96rem;line-height:1.35}
-  .tl .it{grid-template-columns:64px 1fr}
-  .tl .yr{white-space:nowrap;font-size:.92rem}
+  .tl .it{grid-template-columns:48px 1fr}
+  .tl .yr{font-size:.88rem}
+  .tl .t{font-size:.92rem;line-height:1.35}
   .p-hero{padding:34px 0 16px}
   .p-hero h1{font-size:clamp(2rem,9.5vw,2.6rem)}
   .p-sub{font-size:.98rem;line-height:1.45}
