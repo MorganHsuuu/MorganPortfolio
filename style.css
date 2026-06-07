@@ -120,6 +120,7 @@ a.badge:active{transform:translateY(0)}
 .meta .k{color:var(--ink-soft);min-width:64px;font-weight:600}
 .meta .v{color:var(--ink)}
 .cards{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cards-trio{grid-template-columns:repeat(3,1fr)}
 .card{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-4px)}
 .card .img{position:relative;overflow:hidden;aspect-ratio:16/10;background:#0d0d10}
@@ -128,7 +129,7 @@ a.badge:active{transform:translateY(0)}
 .card .body{padding:26px 28px;display:flex;flex-direction:column;flex:1}
 .card h3{font-size:1.4rem;margin:4px 0 10px}
 .card .tags{margin-bottom:14px}
-@media(max-width:820px){.feat{grid-template-columns:1fr}.feat .img{min-height:240px}.cards{grid-template-columns:1fr}}
+@media(max-width:820px){.feat{grid-template-columns:1fr}.feat .img{min-height:240px}.cards,.cards-trio{grid-template-columns:1fr}}
 
 /* EARLIER / UNDERGRAD GRID */
 .subhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
@@ -208,7 +209,7 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
 .p-meta .v{font-size:.92rem;font-weight:500}
 @media(max-width:760px){.p-meta{grid-template-columns:1fr 1fr;gap:16px}}
 .p-cover{margin:34px 0 8px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);background:var(--paper-2)}
-.p-cover img{width:100%;display:block}
+.p-cover img{width:100%;height:auto;display:block;object-fit:contain}
 
 .p-sec{padding:46px 0;border-bottom:1px solid var(--line)}
 .p-sec:last-of-type{border-bottom:none}
@@ -223,10 +224,10 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
 .p-text li{padding-left:18px;position:relative;color:var(--ink-soft)}
 .p-text li::before{content:"→";position:absolute;left:0;color:var(--gold);font-weight:700}
 .figure{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow)}
-.figure.slide img{padding:0;max-height:none;object-fit:contain;background:#fff;width:100%}
+.figure.slide img{padding:0;max-height:none;object-fit:contain;background:#fff;width:100%;max-width:100%;height:auto;display:block}
 .p-grid .figure.slide{align-self:stretch}
 .p-grid .figure.slide img{max-height:none}
-.figure:not(.slide) img{object-fit:contain;background:var(--paper-2);padding:16px;max-height:520px;margin:0 auto}
+.figure:not(.slide) img{width:100%;height:auto;max-width:100%;display:block;object-fit:contain;background:var(--paper-2);padding:16px;max-height:520px;margin:0 auto}
 .figure figcaption{font-size:.78rem;color:var(--ink-soft);padding:11px 16px;border-top:1px solid var(--line);letter-spacing:.02em}
 .ug-card .more{margin-top:12px;font-size:.82rem;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px;border-bottom:2px solid var(--gold);padding-bottom:2px}
 .callout{background:var(--paper-2);border-radius:14px;padding:20px 22px;margin-top:8px}
@@ -235,6 +236,9 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
 @media(max-width:820px){.p-grid,.p-grid.flip{grid-template-columns:1fr;gap:26px}.p-grid.flip .p-text{order:0}}
 
 .p-nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:34px 0 10px;flex-wrap:wrap}
+.p-download{text-align:center;padding:8px 0 4px}
+.p-download h2{font-family:var(--en-display);font-weight:600;font-size:clamp(1.4rem,3vw,1.85rem);line-height:1.15;margin:8px 0 12px}
+.p-download p{color:var(--ink-soft);max-width:44ch;margin:0 auto 22px;font-size:.96rem;line-height:1.5}
 .p-nav a{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-family:var(--en-display);font-size:1.15rem;transition:.2s}
 .p-nav .next:hover{gap:14px}
 .p-nav .lbl{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-family:var(--en-body);font-weight:600;display:block;margin-bottom:2px}
@@ -345,6 +349,9 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
   .p-meta .v{font-size:.86rem;line-height:1.4}
   .p-text h2{font-size:clamp(1.32rem,5.6vw,1.75rem);line-height:1.18}
   .p-sec{padding:36px 0}
+  .figure:not(.slide) img{max-height:none;padding:10px}
+  .figure.slide img{padding:0}
+  .p-cover img{max-height:none}
 }
 
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
