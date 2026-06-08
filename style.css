@@ -228,6 +228,7 @@ footer{padding:34px 0 50px;border-top:1px solid var(--line);font-size:.84rem;col
 .back{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;letter-spacing:.04em;color:var(--ink-soft);font-weight:500;transition:.2s}
 .back:hover{color:var(--ink);gap:12px}
 .p-hero{padding:42px 0 20px}
+.p-hero .badge{display:flex;width:fit-content;margin-left:auto;margin-top:18px}
 .p-hero .num{font-size:1rem}
 .p-hero h1{font-family:var(--en-display);font-weight:600;font-size:clamp(2.4rem,5.4vw,3.7rem);line-height:1.04;letter-spacing:-.01em;margin:8px 0 10px}
 .p-sub{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--ink-soft);max-width:56ch}
