@@ -59,6 +59,36 @@ a.badge:active{transform:translateY(0)}
 .badge-plane svg{width:13px;height:13px;display:block}
 .greet{font-size:.92rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.04em}
 .hero h1{font-family:var(--en-display);font-weight:600;line-height:1.02;font-size:clamp(2.9rem,6.4vw,4.6rem);letter-spacing:-.01em;margin:12px 0 6px}
+.hero-name-wrap{position:relative;display:block;overflow:visible}
+.hero-name-flight{position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:3}
+.hero-name-plane,.hero-name-trail{position:absolute;width:36px;height:36px;margin:-18px 0 0 -18px;color:var(--gold);opacity:0;will-change:left,top,transform,opacity}
+.hero-name-plane svg,.hero-name-trail svg{width:100%;height:100%;display:block}
+.hero-name-plane{filter:drop-shadow(0 2px 8px rgba(196,160,53,.4))}
+.hero-name-trail{filter:blur(.6px)}
+.hero-name-trail.t1{transform:scale(.88)}
+.hero-name-trail.t2{transform:scale(.76)}
+.hero-name-trail.t3{transform:scale(.64)}
+.hero-name-streak{position:absolute;width:54px;height:2px;margin:-1px 0 0 -54px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(196,160,53,.55) 35%,rgba(196,160,53,.15));opacity:0;filter:blur(.5px);transform-origin:right center}
+.hero-name-flight.fly .hero-name-plane{animation:heroPlanePath 2.5s cubic-bezier(.25,.46,.25,1) forwards}
+.hero-name-flight.fly .hero-name-trail.t1{animation:heroPlanePath 2.5s .14s cubic-bezier(.25,.46,.25,1) forwards}
+.hero-name-flight.fly .hero-name-trail.t2{animation:heroPlanePath 2.5s .26s cubic-bezier(.25,.46,.25,1) forwards}
+.hero-name-flight.fly .hero-name-trail.t3{animation:heroPlanePath 2.5s .38s cubic-bezier(.25,.46,.25,1) forwards}
+.hero-name-flight.fly .hero-name-streak{animation:heroStreakPath 2.5s .08s cubic-bezier(.25,.46,.25,1) forwards}
+@keyframes heroPlanePath{
+  0%{left:var(--start-x);top:var(--start-y);opacity:0;transform:rotate(-4deg) scale(.6)}
+  7%{opacity:var(--trail-opacity,1)}
+  48%{left:var(--hsu-x);top:var(--hsu-y);opacity:var(--trail-opacity,1);transform:rotate(-2deg) scale(1)}
+  56%{left:calc(var(--hsu-x) + 6px);top:calc(var(--hsu-y) - 10px);transform:rotate(-14deg) scale(.98)}
+  68%{left:calc(var(--hsu-x) + 48px);top:calc(var(--hsu-y) - 52px);opacity:var(--trail-opacity,1);transform:rotate(-28deg) scale(.92)}
+  100%{left:var(--exit-x);top:var(--exit-y);opacity:0;transform:rotate(-42deg) scale(.72)}
+}
+@keyframes heroStreakPath{
+  0%,6%{opacity:0;left:var(--start-x);top:var(--start-y);transform:rotate(-4deg) scaleX(.4)}
+  12%,58%{opacity:.7}
+  48%{left:var(--hsu-x);top:var(--hsu-y);transform:rotate(-2deg) scaleX(1)}
+  68%{left:calc(var(--hsu-x) + 48px);top:calc(var(--hsu-y) - 52px);transform:rotate(-28deg) scaleX(.9)}
+  100%{left:var(--exit-x);top:var(--exit-y);opacity:0;transform:rotate(-42deg) scaleX(.5)}
+}
 .hero h1 .cjk{font-size:.42em;font-weight:500;color:var(--ink-soft);letter-spacing:.18em;vertical-align:middle;margin-left:.5em}
 .role{font-size:clamp(1.05rem,2.4vw,1.4rem);font-weight:500}
 .role b{position:relative;white-space:nowrap}
@@ -68,6 +98,13 @@ a.badge:active{transform:translateY(0)}
 .hero-cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
 .hero-photo{position:relative}
 .hero-photo .frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/3.6}
+.hero-photo-hit{cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.hero-photo-hit:hover{transform:translateY(-2px);box-shadow:0 22px 44px -18px rgba(21,48,59,.45)}
+.hero-photo-hit:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.hero-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}
+.hero-star{position:absolute;font-size:1rem;line-height:1;pointer-events:none;animation:heroStar .9s ease-out var(--delay,0s) forwards;text-shadow:0 0 6px rgba(255,255,255,.8)}
+@keyframes heroStar{0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(0deg)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.1) rotate(var(--rot))}100%{opacity:0;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(.25) rotate(calc(var(--rot) + 140deg))}}
+@media(prefers-reduced-motion:reduce){.hero-photo-hit:hover{transform:none}.hero-star{animation:none;display:none}.hero-name-flight{display:none}}
 .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-photo .block{position:absolute;right:-16px;bottom:-16px;width:56%;height:46%;background:var(--gold);border-radius:18px;z-index:-1}
 .hero-photo .stamp{position:absolute;left:-14px;top:18px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:8px 13px;font-size:.7rem;letter-spacing:.1em;font-weight:600;box-shadow:0 10px 26px -16px rgba(21,48,59,.5);text-transform:uppercase;color:var(--ink-soft)}
