@@ -144,7 +144,6 @@ a.badge:hover .badge-arrow{animation:none;transform:translateX(3px)}
 /* WORK (home) */
 #work{scroll-margin-top:72px;overflow-anchor:none}
 .work-deck.is-flipping{overflow-anchor:none}
-.work-deck.is-scroll-up .work-deck-toggle{pointer-events:none;opacity:.4}
 .work-deck{margin-top:34px}
 .work-deck.is-static .work-deck-stack>.feat{margin-top:0}
 .work-deck .feat,.work-deck .card{cursor:pointer}
@@ -209,17 +208,7 @@ a.badge:hover .badge-arrow{animation:none;transform:translateX(3px)}
   .work-deck:not(.is-static).is-expanded .work-deck-stack{display:flex;flex-direction:column;gap:16px}
   .work-deck:not(.is-static).is-expanded .work-deck-hint{display:none}
   .work-deck:not(.is-static).is-expanded .cards{margin-top:0;gap:16px}
-  .work-deck-toggle{display:none;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-top:14px;padding:13px 16px;border:1px dashed var(--line);border-radius:14px;background:var(--white);color:var(--ink);font:inherit;font-size:.84rem;font-weight:600;cursor:pointer;transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease,opacity .3s ease}
-  .work-deck.is-expanded:not(.is-flipping) .work-deck-toggle{display:flex}
-  .work-deck-toggle:hover{border-color:var(--gold);box-shadow:0 10px 22px -16px rgba(21,48,59,.28);transform:translateY(-1px)}
-  .work-deck-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-  .work-deck-toggle:disabled{opacity:.55;cursor:wait;transform:none}
-  .work-deck-toggle-text{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left}
-  .work-deck-toggle-count{font-size:.7rem;font-weight:500;color:var(--ink-soft);letter-spacing:.04em}
-  .work-deck-toggle-ic{font-size:1rem;line-height:1;color:var(--gold)}
-  .work-deck.is-expanded .work-deck-toggle{margin-top:18px}
 }
-@media(min-width:821px){.work-deck-toggle{display:none}}
 @keyframes deckHintBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
 @keyframes deckBodyIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){

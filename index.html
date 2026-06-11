@@ -154,13 +154,6 @@
     </div>
       <span class="work-deck-hint" aria-hidden="true"><span class="work-deck-hint-tap">Tap</span> to open all 4 projects</span>
     </div>
-    <button type="button" class="work-deck-toggle reveal d3" aria-expanded="false" aria-controls="work-deck-stack" hidden>
-      <span class="work-deck-toggle-text">
-        <span class="work-deck-toggle-label">Stack projects</span>
-        <span class="work-deck-toggle-count">Back to deck view</span>
-      </span>
-      <span class="work-deck-toggle-ic" aria-hidden="true">↑</span>
-    </button>
     </div>
   </div>
 </section>
@@ -338,25 +331,14 @@
   (function(){
     const deck=document.getElementById('work-deck');
     const stack=document.getElementById('work-deck-stack');
-    const toggle=deck&&deck.querySelector('.work-deck-toggle');
-    const label=toggle&&toggle.querySelector('.work-deck-toggle-label');
-    const icon=toggle&&toggle.querySelector('.work-deck-toggle-ic');
-    if(!deck||!stack||!toggle)return;
+    if(!deck||!stack)return;
 
     const mqMobile=window.matchMedia('(max-width: 820px)');
     const mqReduced=window.matchMedia('(prefers-reduced-motion: reduce)');
     const items=()=>[...stack.querySelectorAll('.feat,.card')];
 
-    function syncToggleVisible(){
-      toggle.hidden=!deckItems()||!deck.classList.contains('is-expanded')||deck.classList.contains('is-flipping');
-    }
-
     function setExpanded(on){
       deck.classList.toggle('is-expanded',on);
-      toggle.setAttribute('aria-expanded',String(on));
-      if(label)label.textContent='Stack projects';
-      if(icon)icon.textContent='↑';
-      syncToggleVisible();
       if(deckItems()){
         if(on){
           stack.removeAttribute('role');
@@ -381,7 +363,6 @@
     function syncMode(){
       if(!mqMobile.matches||mqReduced.matches){
         deck.classList.add('is-static');
-        toggle.hidden=true;
         setExpanded(true);
         return;
       }
@@ -405,66 +386,11 @@
       stack.style.height='';
       stack.style.transition='';
       stack.style.overflow='';
-      deck.classList.remove('is-flipping','is-expanding','is-scroll-up');
-      syncToggleVisible();
-    }
-
-    function workHeadY(){
-      const eyebrow=document.querySelector('#work .eyebrow');
-      if(!eyebrow)return window.scrollY;
-      const navH=document.querySelector('nav')?.offsetHeight||0;
-      return Math.max(0,eyebrow.getBoundingClientRect().top+window.scrollY-navH-12);
+      deck.classList.remove('is-flipping','is-expanding');
     }
 
     const EXPAND_DUR=880;
     const EXPAND_STAGGER=115;
-    const SCROLL_UP_MS=700;
-    const COLLAPSE_DUR=760;
-    const COLLAPSE_EASE='cubic-bezier(.25,1,.28,1)';
-    let scrollRaf=null;
-
-    function cancelScrollAnim(){
-      if(scrollRaf){cancelAnimationFrame(scrollRaf);scrollRaf=null}
-    }
-
-    function scrollAnimated(ms,onFrame,cb){
-      cancelScrollAnim();
-      const html=document.documentElement;
-      const prevScroll=html.style.scrollBehavior;
-      const y=workHeadY();
-      const start=window.scrollY;
-      const dist=y-start;
-      function finish(frame){
-        html.style.scrollBehavior=prevScroll;
-        scrollRaf=null;
-        if(onFrame)onFrame(frame);
-        if(cb)cb();
-      }
-      if(mqReduced.matches||Math.abs(dist)<4){
-        window.scrollTo(0,y);
-        finish(1);
-        return;
-      }
-      html.style.scrollBehavior='auto';
-      const duration=ms||SCROLL_UP_MS;
-      const t0=performance.now();
-      const ease=t=>t*t*(3-2*t);
-      function tick(now){
-        const p=Math.min(1,(now-t0)/duration);
-        window.scrollTo(0,start+dist*ease(p));
-        if(onFrame)onFrame(ease(p));
-        if(p<1)scrollRaf=requestAnimationFrame(tick);
-        else{
-          window.scrollTo(0,y);
-          finish(1);
-        }
-      }
-      scrollRaf=requestAnimationFrame(tick);
-    }
-
-    function scrollToWorkHead(ms){
-      scrollAnimated(ms||SCROLL_UP_MS);
-    }
 
     function wireCardTargets(){
       items().forEach(card=>{
@@ -484,7 +410,6 @@
       const first=els.map(snap);
       deck.classList.add('is-flipping','is-expanding');
       setExpanded(true);
-      syncToggleVisible();
       void stack.offsetHeight;
       const last=els.map(snap);
       els.forEach((el,i)=>{
@@ -503,62 +428,19 @@
             el.style.transition=`transform ${dur}ms ${ease} ${i*stagger}ms`;
             el.style.transform='';
           });
-          setTimeout(()=>{
-            clearFlip(els);
-            toggle.disabled=false;
-          },dur+(els.length-1)*stagger+100);
+          setTimeout(()=>clearFlip(els),dur+(els.length-1)*stagger+100);
         });
       });
     }
 
-    function runStackCollapse(els){
-      const ease=COLLAPSE_EASE;
-      deck.classList.add('is-flipping');
-      const stackH0=stack.offsetHeight;
-      stack.style.height=stackH0+'px';
-      stack.style.overflow='hidden';
-      setExpanded(false);
-      syncToggleVisible();
-      const collapsedH=stack.offsetHeight;
-      stack.style.height=stackH0+'px';
-      requestAnimationFrame(()=>{
-        requestAnimationFrame(()=>{
-          stack.style.transition=`height ${COLLAPSE_DUR}ms ${ease}`;
-          stack.style.height=collapsedH+'px';
-          setTimeout(()=>{
-            clearFlip(els);
-            toggle.disabled=false;
-          },COLLAPSE_DUR+80);
-        });
-      });
-    }
-
-    function runCollapse(){
-      const els=items();
-      toggle.disabled=true;
-      toggle.hidden=true;
-      deck.classList.add('is-scroll-up');
-      scrollAnimated(SCROLL_UP_MS,null,()=>{
-        deck.classList.remove('is-scroll-up');
-        runStackCollapse(els);
-      });
-    }
-
-    function flipToggle(){
-      const expanding=!deck.classList.contains('is-expanded');
+    function expandDeck(){
+      if(deck.classList.contains('is-expanded')||deck.classList.contains('is-flipping'))return;
       deck.dataset.toggled='1';
-      if(mqReduced.matches||!mqMobile.matches){
-        setExpanded(expanding);
-        if(!expanding)scrollToWorkHead();
+      if(mqReduced.matches){
+        setExpanded(true);
         return;
       }
-      toggle.disabled=true;
-      if(expanding){
-        cancelScrollAnim();
-        runExpand();
-      }else{
-        runCollapse();
-      }
+      runExpand();
     }
 
     function poke(on){
@@ -570,14 +452,13 @@
     stack.addEventListener('pointercancel',()=>poke(false));
     stack.addEventListener('pointerleave',()=>poke(false));
 
-    toggle.addEventListener('click',flipToggle);
     stack.addEventListener('click',e=>{
       deck.classList.remove('is-poke');
       const rawLink=e.target.closest('a');
       if(rawLink)return;
       const card=e.target.closest('.feat,.card');
       if(deckItems()&&!deck.classList.contains('is-expanded')){
-        flipToggle();
+        expandDeck();
         return;
       }
       if(card?.dataset.href)window.location.href=card.dataset.href;
@@ -587,7 +468,7 @@
       const card=e.target.closest('.feat,.card');
       e.preventDefault();
       if(deckItems()&&!deck.classList.contains('is-expanded')){
-        flipToggle();
+        expandDeck();
         return;
       }
       if(card?.dataset.href)window.location.href=card.dataset.href;
