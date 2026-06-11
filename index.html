@@ -190,33 +190,16 @@
             </a>
           </div>
         </div>
-        <div class="skills reveal d3">
-          <div class="sk">
-            <h4>Research</h4>
-            <div class="sk-marquee" aria-label="Research skills">
-              <div class="sk-marquee-track">
-                <ul class="sk-row"><li>HCI</li><li>UX Research</li><li>User Interviews</li><li>Research through Design</li></ul>
-                <ul class="sk-row" aria-hidden="true"><li>HCI</li><li>UX Research</li><li>User Interviews</li><li>Research through Design</li></ul>
-              </div>
+        <div class="skills reveal d3" id="skills-carousel">
+          <div class="skills-viewport" id="skills-viewport" tabindex="0" aria-label="Skills: Research, Design, Build">
+            <div class="skills-track">
+              <div class="sk"><h4>Research</h4><ul><li>HCI</li><li>UX Research</li><li>User Interviews</li><li>Research through Design</li></ul></div>
+              <div class="sk"><h4>Design</h4><ul><li>Interaction Design</li><li>Service Design</li><li>HMI</li><li>UI/UX</li></ul></div>
+              <div class="sk"><h4>Build</h4><ul><li>Figma</li><li>Raspberry Pi</li><li>Firebase</li><li>Vibe coding</li><li>Cursor</li></ul></div>
             </div>
           </div>
-          <div class="sk">
-            <h4>Design</h4>
-            <div class="sk-marquee" aria-label="Design skills">
-              <div class="sk-marquee-track">
-                <ul class="sk-row"><li>Interaction Design</li><li>Service Design</li><li>HMI</li><li>UI/UX</li></ul>
-                <ul class="sk-row" aria-hidden="true"><li>Interaction Design</li><li>Service Design</li><li>HMI</li><li>UI/UX</li></ul>
-              </div>
-            </div>
-          </div>
-          <div class="sk">
-            <h4>Build</h4>
-            <div class="sk-marquee" aria-label="Build skills">
-              <div class="sk-marquee-track">
-                <ul class="sk-row"><li>Figma</li><li>Raspberry Pi</li><li>Firebase</li><li>Vibe coding</li><li>Cursor</li></ul>
-                <ul class="sk-row" aria-hidden="true"><li>Figma</li><li>Raspberry Pi</li><li>Firebase</li><li>Vibe coding</li><li>Cursor</li></ul>
-              </div>
-            </div>
+          <div class="skills-foot" hidden>
+            <div class="skills-dots" role="tablist" aria-label="Skill categories"></div>
           </div>
         </div>
       </div>
@@ -708,6 +691,172 @@
     mqMobile.addEventListener('change',syncMode);
     mqReduced.addEventListener('change',syncMode);
     window.addEventListener('resize',()=>{if(mqMobile.matches)scrollTo(index,false);});
+    syncMode();
+  })();
+
+  (function(){
+    const root=document.getElementById('skills-carousel');
+    const viewport=document.getElementById('skills-viewport');
+    const track=viewport&&viewport.querySelector('.skills-track');
+    const foot=root&&root.querySelector('.skills-foot');
+    const dotsEl=foot&&foot.querySelector('.skills-dots');
+    if(!root||!viewport||!track||!foot||!dotsEl)return;
+
+    const mqMobile=window.matchMedia('(max-width: 820px)');
+    const mqReduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const labels=[
+      ['Research','Design'],
+      ['Design','Build'],
+      ['Build','Research']
+    ];
+    let index=0;
+    let timer=null;
+    let pauseUntil=0;
+    let wrapping=false;
+
+    function slides(){
+      return[...track.querySelectorAll('.sk:not(.sk-clone)')];
+    }
+
+    function padLeft(){
+      return parseFloat(getComputedStyle(viewport).paddingLeft)||0;
+    }
+
+    function windowLeft(i){
+      const list=slides();
+      return Math.max(0,list[i].offsetLeft-padLeft());
+    }
+
+    function cloneResearch(){
+      return track.querySelector('.sk-clone-research');
+    }
+
+    function ensureClones(){
+      track.querySelectorAll('.sk-clone').forEach(n=>n.remove());
+      if(!mqMobile.matches)return;
+      slides().slice(0,2).forEach((el,i)=>{
+        const c=el.cloneNode(true);
+        c.classList.add('sk-clone');
+        if(i===0)c.classList.add('sk-clone-research');
+        c.setAttribute('aria-hidden','true');
+        track.appendChild(c);
+      });
+    }
+
+    function updateDots(){
+      dotsEl.querySelectorAll('.ug-dot').forEach((d,j)=>{
+        d.classList.toggle('on',j===index);
+        d.setAttribute('aria-selected',j===index?'true':'false');
+      });
+    }
+
+    function scrollToWindow(i,smooth){
+      index=(i+3)%3;
+      viewport.scrollTo({left:windowLeft(index),behavior:smooth&&!mqReduced.matches&&!wrapping?'smooth':'auto'});
+      updateDots();
+    }
+
+    function finishWrap(){
+      wrapping=false;
+      viewport.scrollTo({left:0,behavior:'auto'});
+      index=0;
+      updateDots();
+    }
+
+    function step(dir){
+      const next=(index+dir+3)%3;
+      pauseUntil=Date.now()+6000;
+      if(index===2&&next===0){
+        const clone=cloneResearch();
+        if(!clone||mqReduced.matches){
+          scrollToWindow(0,false);
+          return;
+        }
+        wrapping=true;
+        viewport.scrollTo({left:clone.offsetLeft-padLeft(),behavior:'smooth'});
+        if('onscrollend' in window){
+          viewport.addEventListener('scrollend',finishWrap,{once:true});
+        }else{
+          setTimeout(finishWrap,420);
+        }
+        return;
+      }
+      scrollToWindow(next,true);
+    }
+
+    function buildDots(){
+      dotsEl.innerHTML='';
+      labels.forEach((pair,i)=>{
+        const b=document.createElement('button');
+        b.type='button';
+        b.className='ug-dot'+(i===0?' on':'');
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label',pair.join(' and '));
+        b.setAttribute('aria-selected',i===0?'true':'false');
+        b.addEventListener('click',()=>{scrollToWindow(i,true);pauseUntil=Date.now()+6000;});
+        dotsEl.appendChild(b);
+      });
+    }
+
+    function nearestIndex(){
+      const x=viewport.scrollLeft+padLeft();
+      let best=0,dist=Infinity;
+      slides().forEach((s,i)=>{
+        const d=Math.abs(s.offsetLeft-x);
+        if(d<dist){dist=d;best=i;}
+      });
+      return best;
+    }
+
+    function syncMode(){
+      const on=mqMobile.matches;
+      foot.hidden=!on;
+      ensureClones();
+      if(!on){
+        clearInterval(timer);
+        timer=null;
+        viewport.scrollLeft=0;
+        index=0;
+        return;
+      }
+      buildDots();
+      scrollToWindow(index,false);
+      startAutoplay();
+    }
+
+    function startAutoplay(){
+      clearInterval(timer);
+      if(!mqMobile.matches||mqReduced.matches)return;
+      timer=setInterval(()=>{
+        if(wrapping||Date.now()<pauseUntil)return;
+        if(!root.matches(':hover')&&!viewport.matches(':focus-within'))step(1);
+      },2000);
+    }
+
+    let scrollT;
+    viewport.addEventListener('scroll',()=>{
+      if(wrapping)return;
+      clearTimeout(scrollT);
+      scrollT=setTimeout(()=>{
+        if(!mqMobile.matches)return;
+        index=nearestIndex();
+        updateDots();
+      },80);
+    },{passive:true});
+
+    viewport.addEventListener('pointerdown',()=>{pauseUntil=Date.now()+6000;});
+
+    const vis=new IntersectionObserver((es)=>{
+      es.forEach(e=>{
+        if(e.isIntersecting)startAutoplay();
+        else clearInterval(timer);
+      });
+    },{threshold:.25});
+    vis.observe(root);
+
+    mqMobile.addEventListener('change',syncMode);
+    mqReduced.addEventListener('change',syncMode);
+    window.addEventListener('resize',()=>{if(mqMobile.matches)scrollToWindow(index,false);});
     syncMode();
   })();
 </script>
