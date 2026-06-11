@@ -258,7 +258,7 @@ a.badge:hover .badge-arrow{animation:none;transform:translateX(3px)}
 .bg-layout .skills{align-self:start;margin:0;min-width:0}
 .skills-viewport{min-width:0}
 .skills-track{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
-.skills-foot{display:flex;align-items:center;justify-content:flex-start;margin-top:12px}
+.skills-foot{display:flex;align-items:center;justify-content:center;margin-top:12px}
 .skills-dots{display:flex;align-items:center;gap:7px;text-align:center}
 .tl{display:flex;flex-direction:column}
 .tl .it{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
@@ -312,10 +312,9 @@ a.badge:hover .badge-arrow{animation:none;transform:translateX(3px)}
   .skills-track .sk{
     flex:0 0 calc((100cqi - 14px) / 2);
     scroll-snap-align:start;
-    scroll-snap-stop:always
+    scroll-snap-stop:normal
   }
 }
-@media(min-width:821px){.skills-track .sk-clone{display:none}}
 
 /* CONTACT */
 .pass{margin-top:30px;background:var(--ink);color:var(--paper);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.4fr 1fr;box-shadow:var(--shadow);position:relative}

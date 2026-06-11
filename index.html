@@ -706,16 +706,15 @@
     const mqReduced=window.matchMedia('(prefers-reduced-motion: reduce)');
     const labels=[
       ['Research','Design'],
-      ['Design','Build'],
-      ['Build','Research']
+      ['Design','Build']
     ];
+    const COUNT=2;
     let index=0;
     let timer=null;
     let pauseUntil=0;
-    let wrapping=false;
 
     function slides(){
-      return[...track.querySelectorAll('.sk:not(.sk-clone)')];
+      return[...track.querySelectorAll('.sk')];
     }
 
     function padLeft(){
@@ -723,24 +722,7 @@
     }
 
     function windowLeft(i){
-      const list=slides();
-      return Math.max(0,list[i].offsetLeft-padLeft());
-    }
-
-    function cloneResearch(){
-      return track.querySelector('.sk-clone-research');
-    }
-
-    function ensureClones(){
-      track.querySelectorAll('.sk-clone').forEach(n=>n.remove());
-      if(!mqMobile.matches)return;
-      slides().slice(0,2).forEach((el,i)=>{
-        const c=el.cloneNode(true);
-        c.classList.add('sk-clone');
-        if(i===0)c.classList.add('sk-clone-research');
-        c.setAttribute('aria-hidden','true');
-        track.appendChild(c);
-      });
+      return Math.max(0,slides()[i].offsetLeft-padLeft());
     }
 
     function updateDots(){
@@ -751,37 +733,14 @@
     }
 
     function scrollToWindow(i,smooth){
-      index=(i+3)%3;
-      viewport.scrollTo({left:windowLeft(index),behavior:smooth&&!mqReduced.matches&&!wrapping?'smooth':'auto'});
-      updateDots();
-    }
-
-    function finishWrap(){
-      wrapping=false;
-      viewport.scrollTo({left:0,behavior:'auto'});
-      index=0;
+      index=(i+COUNT)%COUNT;
+      viewport.scrollTo({left:windowLeft(index),behavior:smooth&&!mqReduced.matches?'smooth':'auto'});
       updateDots();
     }
 
     function step(dir){
-      const next=(index+dir+3)%3;
+      scrollToWindow(index+dir,true);
       pauseUntil=Date.now()+6000;
-      if(index===2&&next===0){
-        const clone=cloneResearch();
-        if(!clone||mqReduced.matches){
-          scrollToWindow(0,false);
-          return;
-        }
-        wrapping=true;
-        viewport.scrollTo({left:clone.offsetLeft-padLeft(),behavior:'smooth'});
-        if('onscrollend' in window){
-          viewport.addEventListener('scrollend',finishWrap,{once:true});
-        }else{
-          setTimeout(finishWrap,420);
-        }
-        return;
-      }
-      scrollToWindow(next,true);
     }
 
     function buildDots(){
@@ -801,17 +760,16 @@
     function nearestIndex(){
       const x=viewport.scrollLeft+padLeft();
       let best=0,dist=Infinity;
-      slides().forEach((s,i)=>{
-        const d=Math.abs(s.offsetLeft-x);
+      for(let i=0;i<COUNT;i++){
+        const d=Math.abs(slides()[i].offsetLeft-x);
         if(d<dist){dist=d;best=i;}
-      });
+      }
       return best;
     }
 
     function syncMode(){
       const on=mqMobile.matches;
       foot.hidden=!on;
-      ensureClones();
       if(!on){
         clearInterval(timer);
         timer=null;
@@ -828,20 +786,19 @@
       clearInterval(timer);
       if(!mqMobile.matches||mqReduced.matches)return;
       timer=setInterval(()=>{
-        if(wrapping||Date.now()<pauseUntil)return;
+        if(Date.now()<pauseUntil)return;
         if(!root.matches(':hover')&&!viewport.matches(':focus-within'))step(1);
-      },2000);
+      },2800);
     }
 
     let scrollT;
     viewport.addEventListener('scroll',()=>{
-      if(wrapping)return;
       clearTimeout(scrollT);
       scrollT=setTimeout(()=>{
         if(!mqMobile.matches)return;
         index=nearestIndex();
         updateDots();
-      },80);
+      },100);
     },{passive:true});
 
     viewport.addEventListener('pointerdown',()=>{pauseUntil=Date.now()+6000;});
